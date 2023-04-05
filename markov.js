@@ -1,3 +1,4 @@
+"use strict"
 /** Textual markov chain generator. */
 
 
@@ -28,6 +29,25 @@ class MarkovMachine {
 
   getChains() {
     // TODO: implement this!
+    // create empty object
+    //  iterate over words array. If value is not a key in object, create
+    // key value pair. Key is the word, value is an array with words that follow
+    // that word.
+    
+    const wordChain = {};
+    const wordsArr = this.words;
+
+    for (let i = 0; i < this.words.length; i++) {
+      // console.log("test: ", !wordsArr[1])
+      if (!(wordsArr[i] in wordChain)) {
+        wordChain[wordsArr[i]] = [wordsArr[i + 1]];
+        // console.log("wordChain: ", wordChain)
+      } else {
+        // console.log("wordChain[wordsArr[i]: ", wordChain[wordsArr[i]])
+        wordChain[wordsArr[i]].push(wordsArr[i + 1]);
+      }
+    } 
+    return wordChain;
   }
 
 
@@ -42,3 +62,5 @@ class MarkovMachine {
     // - repeat until reaching the terminal null
   }
 }
+
+module.exports = { MarkovMachine }
