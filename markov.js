@@ -34,11 +34,13 @@ class MarkovMachine {
     // key value pair. Key is the word, value is an array with words that follow
     // that word.
     
+    //TODO pluralize chain
     const wordChain = {};
     const wordsArr = this.words;
 
     for (let i = 0; i < this.words.length; i++) {
       // console.log("test: ", !wordsArr[1])
+      // const nextWord = wordsArr[i + 1];
       if (!(wordsArr[i] in wordChain)) {
         wordChain[wordsArr[i]] = [wordsArr[i + 1]];
         // console.log("wordChain: ", wordChain)
@@ -46,14 +48,26 @@ class MarkovMachine {
         // console.log("wordChain[wordsArr[i]: ", wordChain[wordsArr[i]])
         wordChain[wordsArr[i]].push(wordsArr[i + 1]);
       }
+      console.log("wordChain: ", wordChain)
     } 
+
+    for (const key in wordChain) {
+      for (let j = 0; j < wordChain[key].length; j++) {
+        if (wordChain[key][j] === undefined) {
+          console.log("wordChain[key][i]:", wordChain[key][j])
+          wordChain[key].splice(j, 1, null)
+        }
+      } 
+  
+    }
     return wordChain;
+    
   }
-
-
+  
+  
   /** Return random text from chains, starting at the first word and continuing
    *  until it hits a null choice. */
-
+  
   getText() {
     // TODO: implement this!
 

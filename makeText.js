@@ -8,4 +8,4 @@ const catInHatMachine = new MarkovMachine("The cat is in the hat. The cat is the
 
 console.log("catInHatMachine.words:", catInHatMachine.words )
 
-// console.log("catInHatMachine.getChains: ", catInHatMachine.getChains())
+console.log("catInHatMachine.getChains: ", catInHatMachine.getChains())
